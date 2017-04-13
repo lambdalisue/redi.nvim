@@ -14,12 +14,21 @@ class Signature:
 
     def gather_candidates(self):
         script = get_script(self.vim)
-        signatures = script.call_signatures()
-        candidates = [
-            _parse_signature(s, self.description_max_length)
-            for s in signatures
-        ]
-        return candidates
+        try:
+            signatures = script.call_signatures()
+            candidates = [
+                _parse_signature(s, self.description_max_length)
+                for s in signatures
+            ]
+            return candidates
+        except AttributeError:
+            # No signature is available
+            return []
+        except Exception as e:
+            from redi.console import echoerr
+            echoerr(str(e))
+            return []
+
 
 def _parse_signature(signature, description_max_length):
     params = [p.description.replace("\n", ' ')
