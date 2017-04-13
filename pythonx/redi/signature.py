@@ -21,11 +21,10 @@ class Signature:
         ]
         return candidates
 
-
 def _parse_signature(signature, description_max_length):
     params = [p.description.replace("\n", ' ')
               for p in signature.params]
-    definitions, summaries = parse_docstring(signature.docstring() or [])
+    definitions, summaries = parse_docstring(signature.docstring() or '')
 
     def join_params():
         return ', '.join(filter(lambda x: x, [
