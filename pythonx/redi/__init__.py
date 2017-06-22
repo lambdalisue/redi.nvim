@@ -5,7 +5,7 @@ def completion_gather_candidates(vim, args):
         return completion.gather_candidates()
     except Exception as e:
         from redi.console import echoerr
-        echoerr(str(e))
+        echoerr(vim, str(e))
 
 
 def signature_gather_candidates(vim, args):
@@ -15,4 +15,4 @@ def signature_gather_candidates(vim, args):
         return signature.gather_candidates()
     except Exception as e:
         from redi.console import echoerr
-        echoerr(str(e))
+        echoerr(vim, str(e))

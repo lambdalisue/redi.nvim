@@ -26,7 +26,7 @@ class Signature:
             return []
         except Exception as e:
             from redi.console import echoerr
-            echoerr(str(e))
+            echoerr(self.vim, str(e))
             return []
 
 
